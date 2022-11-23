@@ -33,6 +33,8 @@ Outputs:
     Value: !Ref dmslabstudentsubnet1
 Parameters:
   ServerName:
+    Description: RDS server instance name (e.g. output from previous CFN template of dmslabinstance)
+    Default: dmslabinstance.ccikboit4prd.us-east-1.rds.amazonaws.com
     Type: String
   DMSVPCRoleCreated:
     Description: dms-vpc-role already created in account?
@@ -50,6 +52,10 @@ Parameters:
       - no
       - yes
     ConstraintDescription: must specify 'yes' or 'no'.
+  ReplicationInstanceClass:
+    Description: instance definition for DMS
+    Default: dms.t2.micro
+    Type: String
 Conditions:
   DMSVPCRoleExist:
     Fn::Equals:
@@ -116,20 +122,6 @@ Resources:
         -
           Key: Name
           Value: DMSLab-IGW
-  NatPublicIP:
-    DependsOn: dmslabstudentvpc
-    Type: AWS::EC2::EIP
-    Properties:
-      Domain: vpc
-  NatGateway:
-    Type: AWS::EC2::NatGateway
-    Properties:
-      AllocationId: !GetAtt NatPublicIP.AllocationId
-      SubnetId: !Ref dmslabstudentsubnet3
-      Tags:
-        -
-          Key: Name
-          Value: NatGateway
   dmslabdopt:
     Type: AWS::EC2::DHCPOptions
     Properties:
@@ -220,19 +212,6 @@ Resources:
     Properties:
       RouteTableId: !Ref dmslabstudentrtable2
       SubnetId: !Ref dmslabstudentsubnet3
-  route1:
-    Type: AWS::EC2::Route
-    Properties:
-      DestinationCidrBlock: 0.0.0.0/0
-      RouteTableId: !Ref dmslabstudentrtable1
-      NatGatewayId: !Ref NatGateway
-  route2:
-    DependsOn: gw1
-    Type: AWS::EC2::Route
-    Properties:
-      DestinationCidrBlock: 0.0.0.0/0
-      RouteTableId: !Ref dmslabstudentrtable2
-      GatewayId: !Ref dmslabstudentigw
   dchpassoc1:
     Type: AWS::EC2::VPCDHCPOptionsAssociation
     Properties:
@@ -549,8 +528,8 @@ Resources:
     Type: AWS::DMS::ReplicationInstance
     Properties:
       ReplicationInstanceIdentifier: dmsreplication-instance
-      ReplicationInstanceClass: dms.t3.medium
-      AllocatedStorage: 50
+      ReplicationInstanceClass: !Ref ReplicationInstanceClass
+      AllocatedStorage: 20
       VpcSecurityGroupIds:
         - !Ref sgdefault
       ReplicationSubnetGroupIdentifier:
