@@ -15,3 +15,6 @@ Comments on file 1:
 
 Comments on file 2:
 -CFN resources relating to NatGateway creation were removed
+
+****
+this setup unfortunately doesn't work straigh away, as without NAT Gateway replication instances cannot connect to RDS instance. See other branches for solutions 
