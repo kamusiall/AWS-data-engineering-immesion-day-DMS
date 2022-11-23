@@ -15,3 +15,8 @@ Comments on file 1:
 
 Comments on file 2:
 -CFN resources relating to NatGateway creation were removed
+
+
+***
+in this setup you are only provided with RDS, without replication instances. It is a (free of charge) alternative for deployment CFN from this lab:
+https://catalog.us-east-1.prod.workshops.aws/workshops/976050cc-0606-4b23-b49f-ca7b8ac4b153/en-US/400/401/410-pre-lab-1
