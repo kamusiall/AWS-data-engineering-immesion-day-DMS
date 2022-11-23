@@ -12,6 +12,15 @@ Parameters:
     Description: S3 Key which contains the source object
     Default: dmslambda_v1.zip
     Type: String
+  InstanceType:
+    Type: String
+    Default: t2.micro
+  AllocatedStorage:
+    Type: String
+    Default: '100'
+  SGIngress3CidrIp:
+    Type: String
+    Default: 213.134.172.143/32
 Resources:
   DMSLabCFNS3Bucket:
     Type: 'AWS::S3::Bucket'
@@ -174,9 +183,8 @@ Resources:
     Properties:
       DisableApiTermination: false
       InstanceInitiatedShutdownBehavior: stop
-      EbsOptimized: true
       ImageId: !Ref LatestAmiId
-      InstanceType: t3.2xlarge
+      InstanceType: !Ref InstanceType
       UserData:
         Fn::Base64: !Sub |
           Content-Type: multipart/mixed; boundary="//"
@@ -205,7 +213,7 @@ Resources:
           cd /home/ec2-user
           DIR="aws-database-migration-samples"
           if [ ! -d "$DIR" ]; then
-              git clone https://github.com/aws-samples/aws-database-migration-samples.git
+              git clone https://github.com/kamusiall/aws-database-migration-samples.git
           fi
           cd aws-database-migration-samples/PostgreSQL/sampledb/v1/
           export PGPASSWORD=admin123
@@ -235,10 +243,10 @@ Resources:
     Type: AWS::RDS::DBInstance
     DependsOn: InternetRoute
     Properties:
-      AllocatedStorage: '500'
+      AllocatedStorage: !Ref AllocatedStorage
       AllowMajorVersionUpgrade: false
       AutoMinorVersionUpgrade: true
-      DBInstanceClass: db.t2.2xlarge
+      DBInstanceClass: !Sub db.${InstanceType}
       DBInstanceIdentifier: dmslabinstance
       Port: '5432'
       PubliclyAccessible: true
@@ -347,7 +355,7 @@ Resources:
       IpProtocol: tcp
       FromPort: 5432
       ToPort: 5432
-      CidrIp: 72.21.196.67/32
+      CidrIp: !Ref SGIngress3CidrIp
   SGEgress1:
     Type: AWS::EC2::SecurityGroupEgress
     Properties:
