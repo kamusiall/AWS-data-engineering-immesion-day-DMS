@@ -15,3 +15,6 @@ Comments on file 1:
 
 Comments on file 2:
 -CFN resources relating to NatGateway creation were removed
+
+****
+see branches readme for details on setup
