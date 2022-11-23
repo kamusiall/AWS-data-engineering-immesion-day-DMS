@@ -13,8 +13,6 @@ Comments on file 1:
 -In order to descrease size of database deployment, changes were made to original database creation files, details can be found in this repo: https://github.com/kamusiall/aws-database-migration-samples
 -To assure security when connecting to RDS from remote source, an IP of the source can be provided in inbound rules setup at the stage of CFN stack creation
 
-Comments on file 2:
--CFN resources relating to NatGateway creation were removed
 
 ****
-see branches readme for details on setup
+see branches readme for details on setup, files in the 'main' branch are raw AWS files which can be compared to other branches
