@@ -35,7 +35,7 @@ see branches readme for details on setup
 
 after setup of replication instance (https://catalog.us-east-1.prod.workshops.aws/workshops/976050cc-0606-4b23-b49f-ca7b8ac4b153/en-US/400/401/430-main-lab) it has been found that after some point RDS storage started to decrease rapidly. After checking options listed here:
 https://aws.amazon.com/premiumsupport/knowledge-center/diskfull-error-rds-postgresql/
-Issue is likely due to 'Streaming read replica lag'.
+Issue is likely due to 'Streaming read replica lag' causing no WAL consumption.
 
 In order to confirm this is an issue you can:
 1. check RDS instance metrics: "Transaction Logs Disk Usage" or "Free Storage Space"
@@ -49,3 +49,8 @@ To alleviate the issue, you can:
 
 Any other issue is likely described in the AWS lab.
 
+***
+***next steps***
+
+alter CFN to assure each lab step setup with one YAML file
+figure out original reason for WAL issue described in known issues.
