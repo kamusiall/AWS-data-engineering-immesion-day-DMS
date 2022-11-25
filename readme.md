@@ -45,3 +45,7 @@ active FROM pg_replication_slots ;`
 To alleviate the issue, you can:
 1. setup alarm for metrics listed in point 1 and stop/start the instance when you need to work with the lab (the instance will stop anyway if storage is exhausted). It is unknown if replication will start correctly after this step
 2. use pg_drop_replication_slot (per above AWS knowledge-center article)
+3. increase size of the instance (whic will incur some costs)
+
+Any other issue is likely described in the AWS lab.
+
