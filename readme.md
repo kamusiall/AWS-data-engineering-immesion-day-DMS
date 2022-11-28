@@ -13,4 +13,4 @@ https://catalog.us-east-1.prod.workshops.aws/workshops/976050cc-0606-4b23-b49f-c
 in order to establish communication with replication instances you can setup replication instances in the same VPC as your RDS - see step 2 from this lab:
 https://github.com/sanchitdilipjain/acd-2022-dna-workhop/blob/main/DNA%20Lab%20Manual.pdf
 
-after creation of 'Source Endpoint' add inbound rule to your RDS to permit Postgresql communication through security group.
+In order to assure communication between DMS 'Source Endpoint' and RDS remember to add Security Group (DMSLabRDS-SG) inbound rule to your RDS to permit Postgresql communication through security group.
