@@ -280,7 +280,7 @@ Resources:
     Type: AWS::RDS::DBParameterGroup
     Properties:
       Description: Parameter for Ticket RedshiftDatabaseName
-      Family: postgres11
+      Family: postgres13
       Parameters:
         rds.logical_replication: '1'
         wal_sender_timeout: '0'
