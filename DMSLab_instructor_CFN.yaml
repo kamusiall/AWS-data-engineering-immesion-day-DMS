@@ -286,6 +286,7 @@ Resources:
         wal_sender_timeout: '0'
         max_wal_senders: '20'
         max_replication_slots: '50'
+        checkpoint_timeout: '3600'
   DMSLabSG:
     Type: AWS::EC2::SecurityGroup
     Properties:
