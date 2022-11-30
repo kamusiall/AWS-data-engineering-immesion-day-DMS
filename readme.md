@@ -20,4 +20,4 @@ In step 1 use cloud formation templates:
 'Deploy RDS Postgres database as the data source' - yaml file from this repo
 
 
-In order to assure communication between DMS 'Source Endpoint' and RDS remember to add Security Group (DMSLabRDS-SG) inbound rule to your RDS to permit Postgresql communication through security group.
+In order to assure communication between DMS 'Source Endpoint' and RDS remember to add Security Group (DMSLabRDS-SG) inbound rule to your RDS to permit Postgresql communication through security group. (alternatively you can also allow all traffic through setting inbound ip to :0.0.0.0, but this is not recommended)
