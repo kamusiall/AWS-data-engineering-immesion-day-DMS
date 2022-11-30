@@ -7,7 +7,7 @@ Comments on file 2:
 
 
 ****
-in this setup you are only provided with RDS, without replication instances. It is a (free of charge) alternative for deployment of CFN from this lab:
+in this setup you are only provided with RDS, without replication instances. It is (a free of charge) alternative for deployment of CFN from this lab:
 https://catalog.us-east-1.prod.workshops.aws/workshops/976050cc-0606-4b23-b49f-ca7b8ac4b153/en-US/400/401/410-pre-lab-1
 
 in order to establish communication with replication instances you can setup replication instances in the same VPC as your RDS - see step 2 from this lab:
