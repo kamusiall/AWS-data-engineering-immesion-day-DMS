@@ -33,6 +33,10 @@ see branches readme for details on setup
 ***
 ***known issues***
 
+1.
+no connection between DMS RDS source endpoint and RDS -> follow this instructions: https://catalog.us-east-1.prod.workshops.aws/workshops/976050cc-0606-4b23-b49f-ca7b8ac4b153/en-US/400/401/410-pre-lab-1#changing-rds-security-group
+
+2.
 after setup of replication instance (https://catalog.us-east-1.prod.workshops.aws/workshops/976050cc-0606-4b23-b49f-ca7b8ac4b153/en-US/400/401/430-main-lab) it has been found that after some point RDS storage started to decrease rapidly. After checking options listed here:
 https://aws.amazon.com/premiumsupport/knowledge-center/diskfull-error-rds-postgresql/
 Issue is likely due to 'Streaming read replica lag' causing no WAL consumption.
